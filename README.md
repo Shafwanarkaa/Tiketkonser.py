@@ -1,1 +1,1 @@
-Tugas Akhir Project Dasar Pemrograman SMT 1 Universitas Bina Sarana Informatika
+Tugas Akhir Project Dasar Pemrograman Universitas Bina Sarana Informatika
