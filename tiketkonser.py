@@ -32,13 +32,6 @@ def invoice():
     ticket_code = ''.join(random.choices(letters, k=5)) + numbers
     return ticket_code
 
-def show_running_time():
-    while True:
-        now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        print(f"{Fore.GREEN}{current_time}", end="\r")
-        time.sleep(1)
-        
 # home
 def display_ticket():
     now = datetime.now()
@@ -48,7 +41,7 @@ def display_ticket():
     space = 36  # Jumlah spasi sebelum waktu dan tanggal
 
     print(f"{Fore.BLUE}===================================={Fore.RESET}")
-    print(f"{Fore.LIGHTGREEN_EX}{' ' * ((space - len(current_time) - len(current_date)) // 2)}{current_time} - {current_date}{Fore.RESET}")
+    print(f"{Fore.LIGHTWHITE_EX}{' ' * ((space - len(current_time) - len(current_date)) // 2)}{current_time} - {current_date}{Fore.RESET}")
     print(f"{Fore.BLUE}===================================={Fore.RESET}")
     print(f"{Fore.LIGHTWHITE_EX}PILIH TIKET YANG INGIN DIBELI")
     print("1) HOTPLAY")
@@ -57,7 +50,7 @@ def display_ticket():
     print(f"{Fore.LIGHTYELLOW_EX}0) Keluar{Fore.RESET}")
     print(f"{Fore.BLUE}===================================={Fore.RESET}")
 
-#pilihan tiket
+# Function to select specific ticket details based on the selected event
 def select_ticket(selected_event, pilih_tiket):
     if pilih_tiket in {"1", "ZEUS", "ULTIMATE"}:
         ktg = "ULTIMATE" if selected_event == "Hotplay" else "ZEUS"
@@ -140,13 +133,13 @@ kode_tiket2 = invoice()
 def banyak_tiket_dibeli():
     while True:
         try:
-            quantity = int(input("Berapa banyak : "))
-            if quantity < -1:
-                print("Masukkan jumlah tiket yang valid.")
+            quantity = int(input("Masukkan jumlah tiket yang ingin dibeli (max 5): "))
+            if quantity <= 0 or quantity > 5:
+                print("Masukkan jumlah tiket antara 1 sampai 5.")
             else:
                 return quantity
         except ValueError:
-                print("Harap masukkan angka!")
+            print("Masukkan hanya angka (contoh: 1, 2, 3, dst).")
 
 def payment_proses():
     print("Sudah melakukan pembayaran? [Y/N/0]")
@@ -190,7 +183,7 @@ def BCA():
             print("Kembali ke menu pembayaran")
             return BCA()
         elif bayar == "0":
-            print(f"{Fore.RED}Terima kasih! Anda telah keluar!")    
+            print(f"{Fore.RED}Terima kasih! Anda telah keluar!")
             sys.exit()
         else:
             print("Mohon masukkan Y atau N untuk menanggapi pertanyaan.")
@@ -233,7 +226,7 @@ def BRI():
             print("Kembali ke menu pembayaran")
             return BRI()
         elif bayar == "0":
-            print(f"{Fore.RED}Terima kasih! Anda telah keluar!")    
+            print(f"{Fore.RED}Terima kasih! Anda telah keluar!")
             sys.exit()
         else:
             print("Mohon masukkan Y atau N untuk menanggapi pertanyaan.")
@@ -276,7 +269,7 @@ def MANDIRI():
             print("Kembali ke menu pembayaran")
             return MANDIRI()
         elif bayar == 0:
-            print(f"{Fore.RED}Terima kasih! Anda telah keluar!")    
+            print(f"{Fore.RED}Terima kasih! Anda telah keluar!")
             sys.exit()
         else:
             print("Mohon masukkan Y atau N untuk menanggapi pertanyaan.")
@@ -296,7 +289,7 @@ while True:
         selected_event = "Memories"
         ktg, harga = tiket_memories(selected_event)
     elif selected_option == "0":
-        print(f"{Fore.RED}Terima kasih!")    
+        print(f"{Fore.RED}Terima kasih!")
         sys.exit()
     else:
         print(f"\n{Fore.RED}Pilihan tidak valid, silakan pilih kategori tiket yang tersedia (1/2/0).{Fore.RESET}")
@@ -367,7 +360,6 @@ while True:
             print("[1] BCA \n[2] BRI \n[3] MANDIRI \n ")
 
             while True:
-                try:
                     bayar = int(input("Pilih pembayaran yang tersedia : "))  
                     if bayar == 1:
                         BCA()
@@ -381,8 +373,6 @@ while True:
                     else:
                         print(f"{Fore.RED}Input yang anda masukkan salah, silahkan input kembali.{Fore.RESET}")
                         continue
-                except ValueError: 
-                    print("Masukkan Inputan yang")
             break
         elif ulg in {"K", "k"}:
             os.system('')
@@ -390,3 +380,5 @@ while True:
             break
         else:
             print(f"{Fore.RED}Mohon masukkan Y atau K untuk melanjutkan atau kembali ke menu awal.{Fore.RESET}")
+    
+    
